@@ -4,17 +4,20 @@ const http = require('http');
 const { URL } = require('url');
 const QQ_API = require('./api/qq');
 
-function get(url, params, callback) {
+function constructQuerystring(params) {
   let paramsStr = '';
   for (var p in params) {
     paramsStr += '&' + p + '=' + encodeURIComponent(params[p]);
   }
+  return paramsStr.slice(1);
+}
+function get(url, params, callback) {
   let urlObj = new URL(url);
   let options = {
     protocol: 'http:',
     hostname: urlObj.hostname,
     port: urlObj.port,
-    path: `${urlObj.pathname}?${paramsStr.slice(1)}`,
+    path: `${urlObj.pathname}?${constructQuerystring(params)}`,
     method: 'GET',
     headers: {
       'Accept': '*/*',
@@ -275,7 +278,18 @@ app.get('/api/music/album/:id', (req, res) => {
   //   ],
   // });
 })
-// app.get('/music', );
+app.get('/api/music/:id/address', (req, res) => {
+  // 获取地址需要的参数
+  QQ_API.params.params.songmid = req.params.id;
+  QQ_API.params.params.filename = `C400${req.query.filename}.m4a`;
+  get(QQ_API.params.url, QQ_API.params.params, (err, data) => {
+    if (err) res.send(err);
+    // 返回音乐链接
+    QQ_API.address.params.vkey = data.data.items[0].vkey;
+    const url = `${QQ_API.address.url}${data.data.items[0].filename}?${constructQuerystring(QQ_API.address.params)}`;
+    res.json(url); 
+  });
+});
 
 
 const server = app.listen(3000, () => {
