@@ -3,5 +3,5 @@ node_js:
  - "node"
 install: 
  - npm install
-script:
- - node index.js
+#script:
+# - node index.js
