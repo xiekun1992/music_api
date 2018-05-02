@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-require('./src/dispatcher/qq')(app);
+require('./src/entry')(app);
 
 const server = app.listen(3000, () => {
   console.log(server.address())
