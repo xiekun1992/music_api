@@ -1,29 +1,59 @@
 const dispatcher = require('./dispatcher');
 
 function dispatchQuery(req, res) {
+  let promises = [];
   for (const d in dispatcher) {
-    dispatcher[d].musics(req, res);
+    promises.push(dispatcher[d].musics(req, res));
   }
+  Promise.all(promises).then(res => {
+    res.json(res);
+  }).catch(res => {
+    res.json(res);
+  });
 }
 function dispatchGet(req, res) {
+  let promises = [];
   for (const d in dispatcher) {
-    dispatcher[d].music(req, res);
+    promises.push(dispatcher[d].music(req, res));
   }
+  Promise.all(promises).then(res => {
+    res.json(res);
+  }).catch(res => {
+    res.json(res);
+  });
 }
 function dispatchAlbum(req, res) {
+  let promises = [];
   for (const d in dispatcher) {
-    dispatcher[d].album(req, res);
+    promises.push(dispatcher[d].album(req, res));
   }
+  Promise.all(promises).then(res => {
+    res.json(res);
+  }).catch(res => {
+    res.json(res);
+  });
 }
 function dispatchLyric(req, res) {
+  let promises = [];
   for (const d in dispatcher) {
-    dispatcher[d].lyric(req, res);
+    promises.push(dispatcher[d].lyric(req, res));
   }
+  Promise.all(promises).then(res => {
+    res.json(res);
+  }).catch(res => {
+    res.json(res);
+  });
 }
 function dispatchAddress(req, res) {
+  let promises = [];
   for (const d in dispatcher) {
-    dispatcher[d].address(req, res);
+    promises.push(dispatcher[d].address(req, res));
   }
+  Promise.all(promises).then(res => {
+    res.json(res);
+  }).catch(res => {
+    res.json(res);
+  });
 }
 
 function Proxy(app) {
