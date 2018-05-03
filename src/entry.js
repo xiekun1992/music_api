@@ -5,10 +5,10 @@ function dispatchQuery(req, res) {
   for (const d in dispatcher) {
     promises.push(dispatcher[d].musics(req, res));
   }
-  Promise.all(promises).then(res => {
-    res.json(res);
-  }).catch(res => {
-    res.json(res);
+  Promise.all(promises).then(datum => {
+    res.json(datum);
+  }).catch(err => {
+    res.json(err);
   });
 }
 function dispatchGet(req, res) {
@@ -16,10 +16,10 @@ function dispatchGet(req, res) {
   for (const d in dispatcher) {
     promises.push(dispatcher[d].music(req, res));
   }
-  Promise.all(promises).then(res => {
-    res.json(res);
-  }).catch(res => {
-    res.json(res);
+  Promise.all(promises).then(datum => {
+    res.json(datum);
+  }).catch(err => {
+    res.json(err);
   });
 }
 function dispatchAlbum(req, res) {
@@ -27,10 +27,10 @@ function dispatchAlbum(req, res) {
   for (const d in dispatcher) {
     promises.push(dispatcher[d].album(req, res));
   }
-  Promise.all(promises).then(res => {
-    res.json(res);
-  }).catch(res => {
-    res.json(res);
+  Promise.all(promises).then(datum => {
+    res.json(datum);
+  }).catch(err => {
+    res.json(err);
   });
 }
 function dispatchLyric(req, res) {
@@ -38,10 +38,10 @@ function dispatchLyric(req, res) {
   for (const d in dispatcher) {
     promises.push(dispatcher[d].lyric(req, res));
   }
-  Promise.all(promises).then(res => {
-    res.json(res);
-  }).catch(res => {
-    res.json(res);
+  Promise.all(promises).then(datum => {
+    res.json(datum);
+  }).catch(err => {
+    res.json(err);
   });
 }
 function dispatchAddress(req, res) {
@@ -49,10 +49,10 @@ function dispatchAddress(req, res) {
   for (const d in dispatcher) {
     promises.push(dispatcher[d].address(req, res));
   }
-  Promise.all(promises).then(res => {
-    res.json(res);
-  }).catch(res => {
-    res.json(res);
+  Promise.all(promises).then(datum => {
+    res.json(datum);
+  }).catch(err => {
+    res.json(err);
   });
 }
 
